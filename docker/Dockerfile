@@ -7,7 +7,9 @@ RUN Rscript -e "reticulate::install_miniconda()"
 # /root/.local/share/r-miniconda/bin/conda
 
 ENV PATH=${PATH}:/root/.local/share/r-miniconda/bin
-RUN conda env create -f /scripts/tensorflow_server_gpu.yml
+RUN conda clean -a
+RUN df -h .
+RUN conda env create -f /scripts/tensorflow_server_gpu.yml && conda clean -a
 
 RUN /rocker_scripts/install_tensorflow.sh
 
