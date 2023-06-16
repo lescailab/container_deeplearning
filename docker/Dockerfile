@@ -3,10 +3,10 @@ FROM rocker/ml-verse
 ADD tensorflow_server_gpu.yml /scripts/tensorflow_server_gpu.yml
 
 RUN Rscript -e "reticulate::install_miniconda()"
-# /home/rstudio/.local/share/r-miniconda
-# /home/rstudio/.local/share/r-miniconda/bin/conda
+# /root/.local/share/r-miniconda
+# /root/.local/share/r-miniconda/bin/conda
 
-ENV PATH=${PATH}:/home/rstudio/.local/share/r-miniconda/bin
+ENV PATH=${PATH}:/root/.local/share/r-miniconda/bin
 RUN conda env create -f /scripts/tensorflow_server_gpu.yml
 
 RUN /rocker_scripts/install_tensorflow.sh
